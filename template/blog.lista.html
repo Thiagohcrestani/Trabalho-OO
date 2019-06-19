@@ -2,19 +2,30 @@
 {% block content  %} 
     <h1>Últimas postagens</h1> <!-- Este é o conteúdo da nossa view-->
     {% if posts %}
+	<form method="POST" action="blog/pesquisar">
+		<div class="input-group mb-3">
+			<input type="text" class="form-control" name="pesquisa" placeholder="Pesquisar">
+			<div class="input-group-append">
+				<button class="btn btn-info" type="submit">Pesquisar</button>
+			</div>
+		</div>
+	<hr>
+	</form>
     <div class="card-columns">
     {% for p in posts %}
+	<a href="/blog/{{ p.id }}">
+
 
 
         <div class="card bg-dark text-white">
                 <img src="{{ p.miniatura }}" class="card-img" alt="...">
                 <div class="card-img-overlay">
                   <h5 class="card-title">{{ p.title }}</h5>
-                  <p class="card-text">{{ p.conteudo }}</p>
+                  <!--<p class="card-text">{{ p.conteudo }}</p>-->
                   <p class="card-text">{{ p.autor }}</p>
                 </div>
               </div>
-          
+          </a>
     {% endfor %}
     </div>
     {% endif %}

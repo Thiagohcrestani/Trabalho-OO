@@ -13,5 +13,12 @@ return function(RoutingConfigurator $routes){
 	// no método ultimasPostagens
 	$routes->add('blog','/blog')
 		->controller(['Site\Blog','ultimasPostagens']);
-		
+	
+	$routes->add('postx','/blog/{post}')
+			->controller(['Site\Blog','viewPost'])
+			->defaults(['post'=>0])
+			->requirements(['post'=>'\d+']);
+
+	$routes->add('blogp','/blog/pesquisar')
+			->controller(['Site\Blog','pesquisar']);
 };
